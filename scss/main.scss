@@ -1,0 +1,696 @@
+@import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+//--- VARIABLE ---
+//=== colors ===
+$color-bg_head: #b53eff;
+$color-bg_content: #470060;
+$color-bg_price: #ff6363;
+$color-bg_button: #bb0070;
+$color-pass_button: #cccccc;
+$color-form_button: #00a3ff;
+$color-form_text: #525252;
+$color-form_title: #595959;
+$color-form_hint: #7a7b7c;
+$color-form_pay: #6d6d6d;
+$color-form_desc: #b0b0b0;
+$color-form_bg: #fbfdff;
+$color-form_check: #c4c4c4;
+$color-form_border: #d1dee7;
+$color-text_attention: #ff7474;
+$color-text_main: #ffffff;
+$color-text_hint: #cf67a6;
+$color-bg_footer: #000000;
+$color-line-through: #ff0000;
+//===/ colors ===
+//=== fonts ===
+$font-fam_main: "Montserrat";
+$font-fam_form: "Open Sans";
+$font-normal: 400;
+$font-medium: 500;
+$font-semi_bold: 600;
+$font-bold: 700;
+$font-extra_bold: 800;
+$font-heavy: 900;
+//===/ fonts ===
+//---/ VARIABLE ---
+//--- MIXINS ---
+// for fonts
+@mixin add-font-properties($fam: false, $size: false, $colour: false, $weight: false, $lh: false) {
+  @if $fam {
+    font-family: $fam, "Source Sans Pro", Helvetica, Arial, sans-serif;
+  }
+  @if $size {
+    font-size: $size;
+  }
+  @if $colour {
+    color: $colour;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+}
+//---------------
+// breakpoints
+@mixin respond($point) {
+  @if $point == Sm {
+    @media (max-width: 575.98px) {
+      @content;
+    }
+  } @else if $point == Tablet {
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      @content;
+    }
+  } @else if $point == Laptop {
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      @content;
+    }
+  } @else if $point == Lg {
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+      @content;
+    }
+  } @else if $point == extraLarge {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+//---------------
+@mixin button-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+@mixin button-content {
+  @include button-reset;
+  display: inline-block;
+  max-width: 100%;
+  width: 322px;
+  height: 65px;
+  background-color: $color-bg_button;
+  border-radius: 5px;
+  @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-bold, 2.5rem);
+  transition: opacity 0.5s;
+  &:hover {
+    border: 2px solid $color-text_main;
+  }
+  &:focus {
+    opacity: 0.5;
+  }
+}
+.button-item {
+  @include button-reset;
+  display: inline-block;
+  width: 164px;
+  height: 32px;
+  border: 2px solid $color-text_hint;
+  border-radius: 5px;
+  @include add-font-properties($font-fam_main, 0.875rem, $color-text_hint, $font-bold, 1rem);
+  transition: all 0.5s;
+  &:hover {
+    border-color: $color-text_attention;
+    color: $color-text_main;
+  }
+}
+@mixin img-fluid {
+  img {
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+  }
+}
+//---/ MIXINS ---
+//--- COMMONS ---
+body {
+  position: relative;
+}
+* {
+  font-size: 16px;
+  @include respond(Sm) {
+    font-size: 14px;
+  }
+}
+
+@keyframes tremor {
+  0%,
+  79% {
+    transform: rotate(0);
+  }
+  90% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+//---/ COMMONS ---
+//+++ HEADER +++
+.header-section {
+  position: absolute;
+  background-color: $color-bg_head;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  .row {
+    height: 118px;
+  }
+
+  &__connect {
+    &_info {
+      display: block;
+      text-align: end;
+      @include add-font-properties($font-fam_main, 1.125rem, $color-text_main, $font-semi_bold, 1.5625rem);
+    }
+    &_call {
+      display: none;
+      @extend .header-section__connect_info;
+      font-size: 0.75rem;
+      line-height: 0.9375rem;
+      text-transform: uppercase;
+      img {
+        margin-left: 10px;
+        animation: tremor 5s ease-in-out infinite;
+      }
+    }
+  }
+  @include respond(Sm) {
+    .header-section__connect_info {
+      display: none;
+    }
+    .header-section__connect_call {
+      display: block;
+    }
+    &__logo {
+      @include img-fluid;
+    }
+  }
+}
+//+++/ HEADER +++
+//+++ CONTENT +++
+.content-section {
+  position: relative;
+  top: 118px;
+  left: 0;
+  right: 0;
+  &__watch {
+    background: url(/assets/block-1.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    .title,
+    .subtitle {
+      @include add-font-properties($font-fam_main, 2.75rem, $color-text_main, $font-extra_bold, 3.375rem);
+    }
+    .subtitle {
+      text-align: center;
+    }
+    button {
+      @include button-content;
+    }
+    &_decoration {
+      top: -118px;
+      @include img-fluid;
+    }
+  }
+
+  &__priсes {
+    background-color: $color-bg_content;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    .heading {
+      @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-extra_bold, 1.8125rem);
+      text-align: center;
+    }
+    //--------------------------------------------
+    .jewel {
+      position: relative;
+      height: 480px;
+      background: url(/assets/block-1.png) no-repeat;
+      background-size: cover;
+      background-position: center;
+      .button-item {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+      }
+      &__index {
+        position: absolute;
+        top: 14px;
+        right: 12px;
+        @include add-font-properties($font-fam_main, 1rem, $color-text_main, $font-normal, 1.25rem);
+      }
+      &__img {
+        height: 70%;
+        @include img-fluid;
+      }
+      &__desc {
+        background-color: rgba(92, 0, 67, 0.61);
+        height: 30%;
+        width: 100%;
+        @include add-font-properties($font-fam_main, 1rem, $color-text_main, 1.25rem);
+        h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+    .new-price {
+      background: $color-bg_price;
+      border-radius: 3px;
+      @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-extra_bold, 2rem);
+      span {
+        font-weight: $font-normal;
+      }
+    }
+    .old-price {
+      @include add-font-properties($font-fam_main, 1rem, $color-text_main, $font-bold, 1.25rem);
+      text-decoration: line-through;
+      text-decoration-color: $color-line-through;
+    }
+    .info-sentence {
+      text-align: center;
+      @include add-font-properties($font-fam_main, 1.125rem, $font-bold, 1.375rem);
+      h4:first-child {
+        color: $color-text_main;
+      }
+      h4:last-child,
+      span {
+        color: $color-text_attention;
+      }
+    }
+    .btn-learn-more {
+      @include button-content;
+    }
+  }
+  //--------------------------------------------
+  &__oder {
+    .heading {
+      h1 {
+        @include add-font-properties($font-fam_main, 1.875rem, $color-bg_button, $font-heavy, 2.25rem);
+        text-align: center;
+      }
+      p {
+        @include add-font-properties($font-fam_form, 1.0625rem, $color-form_text, $font-normal, 1.8125rem);
+      }
+    }
+    //--------------------------------------------
+    .form-order {
+      height: 470px;
+      &__field {
+        height: 43px;
+      }
+      input[type="text"],
+      input[type="tel"] {
+        display: block;
+        width: 100%;
+        border: 1px solid $color-form_border;
+        background-color: $color-form_bg;
+      }
+      .title-field {
+        @include add-font-properties($font-fam_form, 1rem, $color-form_title, $font-normal, 1.5625rem);
+      }
+      .conditions {
+        position: relative;
+        @include add-font-properties($font-fam_form, 0.8125rem, $color-form_hint, $font-normal, 0.9375rem);
+        input[type="checkbox"] {
+          display: none;
+        }
+        label:before {
+          position: absolute;
+          top: 0;
+          left: 15;
+          content: "";
+          display: block;
+          width: 15px;
+          height: 15px;
+          border: 2px solid $color-form_check;
+          border-radius: 1px;
+          cursor: pointer;
+        }
+        input[type="checkbox"]:checked + label:before {
+          background-color: $color-form_check;
+          font-size: 1rem;
+          text-align: center;
+          content: "\2713";
+          color: white;
+        }
+      }
+      .about-protection {
+        @include add-font-properties($font-fam_form, 0.6875rem, $color-form_desc, $font-normal, 0.9375rem);
+        span {
+          text-decoration: underline;
+          @include add-font-properties($font-fam_form, 0.6875rem, $color-form_desc, $font-normal, 0.9375rem);
+        }
+      }
+      .about-delivery {
+        .bold-word {
+          font-weight: $font-bold;
+          font-size: 0.75rem;
+        }
+        @include add-font-properties($font-fam_form, 0.75rem, $color-form_hint, $font-normal, 1.375rem);
+      }
+
+      .red-star {
+        color: $color-line-through;
+      }
+
+      button {
+        @include button-reset;
+        height: 60px;
+        width: 100%;
+        border-radius: 2px;
+        background-color: $color-form_button;
+        color: $color-text_main;
+        text-transform: uppercase;
+        @include add-font-properties($font-fam_form, 1.6875rem, $color-text_main, $font-bold, 1.5625rem);
+        transition: color 0.5s;
+        &:hover {
+          color: $color-bg_button;
+          border: 2px solid $color-bg_button;
+        }
+      }
+    }
+    //--------------------------------------------
+    .payment-options {
+      height: 155px;
+      h3 {
+        @include add-font-properties($font-fam_form, 0.875rem, $color-form_pay, $font-bold, 1.375rem);
+      }
+      p {
+        @include add-font-properties($font-fam_form, 0.875rem, $color-form_pay, $font-normal, 1.375rem);
+      }
+
+      .icon-paying {
+        display: block;
+        height: 31px;
+        background-image: url(/assets/paymentmethod.svg);
+        transition: filter 0.5s, transform 0.7s;
+        cursor: pointer;
+        &:hover {
+          filter: grayscale(80%);
+          transform: scale(1.2);
+        }
+      }
+      .visa {
+        background-position: 0 0;
+        width: 48px;
+      }
+      .am-express {
+        background-position: -105px 0;
+        width: 55px;
+      }
+      .mastercard {
+        background-position: -223px 0;
+        width: 39px;
+      }
+      .paypal {
+        background-position: -329px 0;
+        width: 64px;
+      }
+      .israel-bank {
+        background-position: -455px 0;
+        width: 66px;
+      }
+      .shekel {
+        background-position: -564px 0;
+        width: 52px;
+      }
+    }
+  }
+  &__reviews {
+    position: relative;
+    height: 500px;
+
+    .heading {
+      text-align: center;
+      h2 {
+        @include add-font-properties($font-fam_main, 1.5rem, $color-bg_footer, $font-extra_bold, 1.8125rem);
+      }
+    }
+    // .carousel-reviews {
+    //   padding-top: 80px;
+    //   button {
+    //     @include button-reset;
+    //   }
+    //   .btn-prev,
+    //   .btn-next {
+    //     position: absolute;
+    //     display: inline-block;
+    //     transition: color 0.5s, opacity 0.5s;
+    //     .fas {
+    //       display: inline-block;
+    //       font-size: 3rem;
+    //     }
+    //     &:hover {
+    //       opacity: 0.7;
+    //       color: $color-bg_button;
+    //     }
+    //   }
+    //   .btn-prev {
+    //     top: 50%;
+    //     margin-top: 1.5rem;
+    //     left: 15px;
+    //   }
+    //   .btn-next {
+    //     top: 50%;
+    //     margin-top: 1.5rem;
+    //     right: 15px;
+    //   }
+    //   &__wrapper {
+    //     overflow: hidden;
+    //     margin-bottom: 40px;
+    //     height: 300px;
+    //     .item_review {
+    //       background-color: greenyellow;
+    //       border: 3px solid black;
+    //       list-style: none;
+    //       width: 267px;
+    //     }
+    //   }
+    // }
+    // .indicator-group {
+    //   display: block;
+    //   position: absolute;
+    //   left: 50%;
+    //   margin-left: -55px;
+    //   bottom: 0;
+    //   width: 110px;
+    //   input[type="radio"] {
+    //     display: none;
+    //   }
+    //   label {
+    //     display: inline-block;
+    //     width: 30px;
+    //     height: 6px;
+    //     background-color: $color-pass_button;
+    //     cursor: pointer;
+    //   }
+    //   input[type="radio"]:checked + label {
+    //     background-color: $color-bg_footer;
+    //   }
+    // }
+    //==================================================================
+    .slider {
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+      padding-bottom: 30px;
+      button {
+        @include button-reset;
+      }
+      &__inner {
+        overflow: hidden;
+      }
+      &__wrapper {
+        transition: transform 0.6s ease;
+        margin-top:100px;
+      }
+      &__item {
+        position: relative;
+        height: 350px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid;
+        box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
+        &_img {
+          position: absolute;
+          top:-50px;
+          left:10px;
+          width: 100px;
+          height: 100px;
+          img{
+           display: inline-block;
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+          border-radius: 50%;
+          }          
+        }
+      }
+    }
+    .slider__control {
+      position: absolute;
+      display: inline-block;
+      top: 50%;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      .fas {
+        font-size: 3rem;
+        pointer-events: none;
+      }
+      &:hover {
+        opacity: 0.7;
+        color: $color-bg_button;
+      }
+    }
+    .slider__control_left {
+      left: 0;
+    }
+
+    .slider__control_right {
+      right: 0;
+    }
+
+    // .slider__content_title {
+    //   background: #f5f5f5;
+    //   color: #424242;
+    //   white-space: normal;
+    //   font-weight: 700;
+    //   font-size: 20px;
+    //   line-height: 1.3;
+    //   padding: 10px 15px;
+    //   margin: 0;
+    //   height: 52px;
+    // }
+
+    // .slider__content_footer {
+    //   background: #f5f5f5;
+    //   display: flex;
+    //   padding: 20px 15px;
+    //   color: #616161;
+    // }
+
+    // .slider__content_photo {
+    //   display: block;
+    //   height: auto;
+    //   max-width: 100%;
+    //   border-radius: 50%;
+    // }
+
+    // .slider__content_author {
+    //   margin-left: 8px;
+    //   line-height: 40px;
+    // }
+
+    // .slider__content_views {
+    //   margin-left: 4px;
+    //   line-height: 40px;
+    // }
+
+    .slider__indicators {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 15;
+      display: flex;
+      justify-content: center;
+      padding-left: 0;
+      margin-right: 15%;
+      margin-left: 15%;
+      list-style: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      li {
+        box-sizing: content-box;
+        flex: 0 1 auto;
+        width: 30px;
+        height: 4px;
+        margin-right: 3px;
+        margin-left: 3px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: #9e9e9e;
+        background-clip: padding-box;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        opacity: 0.5;
+        transition: opacity 0.6s ease;
+      }
+      .active {
+        opacity: 1;
+      }
+    }
+
+    //==================================================================
+  }
+  @include respond(Laptop) {
+    .content-section__watch_decoration {
+      top: -30px;
+    }
+    .content-section__oder {
+      .heading {
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+  @include respond(Tablet) {
+    .content-section__watch {
+      .title {
+        font-size: 1.3125rem;
+        line-height: 1.625rem;
+        text-align: center;
+        font-weight: normal;
+      }
+      &_decoration {
+        top: -30px;
+      }
+    }
+    .content-section__oder {
+      .heading {
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+  @include respond(Sm) {
+    .content-section__watch {
+      .title {
+        font-size: 1.3125rem;
+        line-height: 1.625rem;
+        text-align: center;
+        font-weight: normal;
+      }
+      &_decoration {
+        top: -30px;
+      }
+    }
+    .content-section__oder {
+      .heading {
+        h1 {
+          font-size: 1.5714rem;
+          line-height: 2rem;
+        }
+        p {
+          font-size: 1rem;
+          line-height: 1.2rem;
+          text-align: center;
+        }
+      }
+    }
+    .slider__indicators{
+      display: none;
+    }
+  }
+}
+//+++/ CONTENT +++
