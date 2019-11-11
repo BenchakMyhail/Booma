@@ -199,7 +199,7 @@ body {
   left: 0;
   right: 0;
   &__watch {
-    background: url(/assets/block-1.png) no-repeat;
+    background: url(./assets/block-1.png) no-repeat;
     background-size: cover;
     background-position: center;
     height: auto;
@@ -232,7 +232,7 @@ body {
     .jewel {
       position: relative;
       height: 480px;
-      background: url(/assets/block-1.png) no-repeat;
+      background: url(./assets/block-1.png) no-repeat;
       background-size: cover;
       background-position: center;
       .button-item {
@@ -389,7 +389,7 @@ body {
       .icon-paying {
         display: block;
         height: 31px;
-        background-image: url(/assets/paymentmethod.svg);
+        background-image: url(./assets/paymentmethod.svg);
         transition: filter 0.5s, transform 0.7s;
         cursor: pointer;
         &:hover {
