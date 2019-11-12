@@ -166,9 +166,6 @@ body {
     height: 118px;
   }
 
-  &__connect {
-  }
-
   .info {
     display: block;
     text-align: end;
@@ -496,15 +493,16 @@ body {
         @include add-font-properties($font-fam_main, 1.5rem, $color-bg_footer, $font-extra_bold, 1.8125rem);
       }
     }
+    button {
+      @include button-reset;
+    }
     // Slider -----------------------------------------
     .slider {
       position: relative;
       overflow: hidden;
       margin: 0 auto;
       padding-bottom: 30px;
-      button {
-        @include button-reset;
-      }
+      
       &__inner {
         overflow: hidden;
         height: 100%;
@@ -517,18 +515,18 @@ body {
       }
       &__item {
         position: relative;
-        @include pad-responsive(300px, 0);
-        @include pad-responsive(350px, 10px);
-        @include pad-responsive(400px, 50px);
+        margin: auto;
+        @include pad-responsive(300px, 10px);
+        @include pad-responsive(400px, 40px);
         @include pad-responsive(500px, 90px);
         @include pad-responsive(576px, 40px);
         @include pad-responsive(700px, 30px);
-        @include pad-responsive(768px, 10px);
+        @include pad-responsive(768px, 5px);
       }
     }
     .slider__content {
       position: relative;
-      box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
       margin: auto;
       // max-width: 267px;
       height: 100%;
@@ -638,6 +636,15 @@ body {
 
     .slider__control_right {
       right: 0;
+    }
+    @include respond(Sm){
+      .slider__control_left {
+        left: 15px;
+      }
+  
+      .slider__control_right {
+        right:15px;
+      }
     }
     .slider__indicators {
       position: absolute;

@@ -18,6 +18,7 @@ var multiItemSlider = (function () {
   }
 
   return function (selector, config) {
+    
     var
       _mainElement = document.querySelector(selector),
       _sliderWrapper = _mainElement.querySelector('.slider__wrapper'),
@@ -282,6 +283,6 @@ var multiItemSlider = (function () {
   }
 }());
 
-var slider = multiItemSlider('.slider', {
+var slider = multiItemSlider('.content-section__reviews', {
   isCycling: true
 });
