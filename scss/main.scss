@@ -644,10 +644,12 @@ body {
     @include respond(Sm){
       .slider__control_left {
         left: 15px;
+        margin-top: 2rem;
       }
   
       .slider__control_right {
         right:15px;
+        margin-top: 2rem;
       }
     }
     .slider__indicators {
