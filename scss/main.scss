@@ -166,6 +166,9 @@ body {
     height: 118px;
   }
 
+  &__connect {
+  }
+
   .info {
     display: block;
     text-align: end;
@@ -522,6 +525,7 @@ body {
         @include pad-responsive(576px, 40px);
         @include pad-responsive(700px, 30px);
         @include pad-responsive(768px, 5px);
+        @include pad-responsive(1200px, 20px);
       }
     }
     .slider__content {
