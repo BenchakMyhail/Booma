@@ -21,6 +21,7 @@ $color-text_main: #ffffff;
 $color-text_hint: #cf67a6;
 $color-bg_footer: #000000;
 $color-line-through: #ff0000;
+$color-text_quote: #9f9f9f;
 //===/ colors ===
 //=== fonts ===
 $font-fam_main: "Montserrat";
@@ -77,6 +78,14 @@ $font-heavy: 900;
     }
   }
 }
+@mixin pad-responsive($device, $pad) {
+  @if $device {
+    @media (min-width: $device) {
+      padding-right: $pad;
+      padding-left: $pad;
+    }
+  }
+}
 //---------------
 @mixin button-reset {
   padding: 0;
@@ -103,6 +112,7 @@ $font-heavy: 900;
     opacity: 0.5;
   }
 }
+
 .button-item {
   @include button-reset;
   display: inline-block;
@@ -128,12 +138,7 @@ $font-heavy: 900;
 //--- COMMONS ---
 body {
   position: relative;
-}
-* {
   font-size: 16px;
-  @include respond(Sm) {
-    font-size: 14px;
-  }
 }
 
 @keyframes tremor {
@@ -162,28 +167,30 @@ body {
   }
 
   &__connect {
-    &_info {
-      display: block;
-      text-align: end;
-      @include add-font-properties($font-fam_main, 1.125rem, $color-text_main, $font-semi_bold, 1.5625rem);
-    }
-    &_call {
-      display: none;
-      @extend .header-section__connect_info;
-      font-size: 0.75rem;
-      line-height: 0.9375rem;
-      text-transform: uppercase;
-      img {
-        margin-left: 10px;
-        animation: tremor 5s ease-in-out infinite;
-      }
+  }
+
+  .info {
+    display: block;
+    text-align: end;
+    @include add-font-properties($font-fam_main, 1.125rem, $color-text_main, $font-semi_bold, 1.5625rem);
+  }
+  .call {
+    display: none;
+    text-transform: uppercase;
+    text-align: end;
+    @include add-font-properties($font-fam_main, 0.75rem, $color-text_main, $font-semi_bold, 0.9375rem);
+
+    img {
+      margin-left: 10px;
+      animation: tremor 5s ease-in-out infinite;
     }
   }
+
   @include respond(Sm) {
-    .header-section__connect_info {
+    .info {
       display: none;
     }
-    .header-section__connect_call {
+    .call {
       display: block;
     }
     &__logo {
@@ -203,22 +210,27 @@ body {
     background-size: cover;
     background-position: center;
     height: auto;
-    .title,
-    .subtitle {
-      @include add-font-properties($font-fam_main, 2.75rem, $color-text_main, $font-extra_bold, 3.375rem);
-    }
-    .subtitle {
-      text-align: center;
-    }
-    button {
-      @include button-content;
-    }
     &_decoration {
       top: -118px;
       @include img-fluid;
     }
   }
-
+  .title,
+  .subtitle {
+    @include add-font-properties($font-fam_main, 2.75rem, $color-text_main, $font-extra_bold, 3.375rem);
+  }
+  .subtitle {
+    text-align: center;
+  }
+  .btn-look {
+    @include button-content;
+    @include respond(Sm) {
+      & {
+        font-size: 1.375rem;
+      }
+    }
+  }
+  // Prices--------------------------------------------
   &__priсes {
     background-color: $color-bg_content;
     background-size: cover;
@@ -227,8 +239,13 @@ body {
     .heading {
       @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-extra_bold, 1.8125rem);
       text-align: center;
+      @include respond(Sm) {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+      }
     }
-    //--------------------------------------------
+
+    // Jewels Items--------------------------------------------
     .jewel {
       position: relative;
       height: 480px;
@@ -250,6 +267,19 @@ body {
         height: 70%;
         @include img-fluid;
       }
+      .new-price {
+        background: $color-bg_price;
+        border-radius: 3px;
+        @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-extra_bold, 2rem);
+        span {
+          font-weight: $font-normal;
+        }
+      }
+      .old-price {
+        @include add-font-properties($font-fam_main, 1rem, $color-text_main, $font-bold, 1.25rem);
+        text-decoration: line-through;
+        text-decoration-color: $color-line-through;
+      }
       &__desc {
         background-color: rgba(92, 0, 67, 0.61);
         height: 30%;
@@ -259,20 +289,22 @@ body {
           font-size: 1rem;
         }
       }
-    }
-    .new-price {
-      background: $color-bg_price;
-      border-radius: 3px;
-      @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-extra_bold, 2rem);
-      span {
-        font-weight: $font-normal;
+
+      @include respond(Sm) {
+        &__index,
+        .old-price,
+        &__desc,
+        h3 {
+          font-size: 0.8125rem;
+          line-height: 1rem;
+        }
+        .new-price {
+          font-size: 1.3125rem;
+          line-height: 1.5625rem;
+        }
       }
     }
-    .old-price {
-      @include add-font-properties($font-fam_main, 1rem, $color-text_main, $font-bold, 1.25rem);
-      text-decoration: line-through;
-      text-decoration-color: $color-line-through;
-    }
+
     .info-sentence {
       text-align: center;
       @include add-font-properties($font-fam_main, 1.125rem, $font-bold, 1.375rem);
@@ -287,19 +319,40 @@ body {
     .btn-learn-more {
       @include button-content;
     }
-  }
-  //--------------------------------------------
-  &__oder {
-    .heading {
-      h1 {
-        @include add-font-properties($font-fam_main, 1.875rem, $color-bg_button, $font-heavy, 2.25rem);
-        text-align: center;
+    @include respond(Sm) {
+      .info-sentence {
+        font-size: 0.9375rem;
+        line-height: 1.125rem;
       }
-      p {
-        @include add-font-properties($font-fam_form, 1.0625rem, $color-form_text, $font-normal, 1.8125rem);
+      .btn-learn-more {
+        font-size: 1.3125rem;
+        line-height: 2.1875rem;
       }
     }
-    //--------------------------------------------
+  }
+  // Section of Oder--------------------------------------------
+  &__oder {
+    .heading {
+      text-align: center;
+      &__title {
+        @include add-font-properties($font-fam_main, 1.875rem, $color-bg_button, $font-heavy, 2.25rem);
+      }
+      &__subtitle {
+        @include add-font-properties($font-fam_form, 1.0625rem, $color-form_text, $font-normal, 1.8125rem);
+      }
+      @include respond(Sm) {
+        &__title {
+          font-size: 1.375rem;
+          line-height: 1.8125rem;
+        }
+        &__subtitle {
+          font-size: 0.875rem;
+          line-height: 1.2rem;
+        }
+      }
+    }
+
+    // Form Oder--------------------------------------------
     .form-order {
       height: 470px;
       &__field {
@@ -354,6 +407,12 @@ body {
           font-size: 0.75rem;
         }
         @include add-font-properties($font-fam_form, 0.75rem, $color-form_hint, $font-normal, 1.375rem);
+        @include respond(Sm) {
+          & {
+            font-size: 0.6875rem;
+            line-height: 1rem;
+          }
+        }
       }
 
       .red-star {
@@ -376,16 +435,21 @@ body {
         }
       }
     }
-    //--------------------------------------------
+    // Sprite pay-metods---------------------------------
     .payment-options {
       height: 155px;
-      h3 {
+      &__title {
         @include add-font-properties($font-fam_form, 0.875rem, $color-form_pay, $font-bold, 1.375rem);
       }
-      p {
+      &__subtitle {
         @include add-font-properties($font-fam_form, 0.875rem, $color-form_pay, $font-normal, 1.375rem);
       }
-
+      @include respond(Sm) {
+        &__subtitle {
+          font-size: 0.75rem;
+          line-height: 1.0625rem;
+        }
+      }
       .icon-paying {
         display: block;
         height: 31px;
@@ -423,79 +487,16 @@ body {
       }
     }
   }
+  // Reviews section ---------------------------------
   &__reviews {
     position: relative;
-    height: 500px;
-
     .heading {
       text-align: center;
       h2 {
         @include add-font-properties($font-fam_main, 1.5rem, $color-bg_footer, $font-extra_bold, 1.8125rem);
       }
     }
-    // .carousel-reviews {
-    //   padding-top: 80px;
-    //   button {
-    //     @include button-reset;
-    //   }
-    //   .btn-prev,
-    //   .btn-next {
-    //     position: absolute;
-    //     display: inline-block;
-    //     transition: color 0.5s, opacity 0.5s;
-    //     .fas {
-    //       display: inline-block;
-    //       font-size: 3rem;
-    //     }
-    //     &:hover {
-    //       opacity: 0.7;
-    //       color: $color-bg_button;
-    //     }
-    //   }
-    //   .btn-prev {
-    //     top: 50%;
-    //     margin-top: 1.5rem;
-    //     left: 15px;
-    //   }
-    //   .btn-next {
-    //     top: 50%;
-    //     margin-top: 1.5rem;
-    //     right: 15px;
-    //   }
-    //   &__wrapper {
-    //     overflow: hidden;
-    //     margin-bottom: 40px;
-    //     height: 300px;
-    //     .item_review {
-    //       background-color: greenyellow;
-    //       border: 3px solid black;
-    //       list-style: none;
-    //       width: 267px;
-    //     }
-    //   }
-    // }
-    // .indicator-group {
-    //   display: block;
-    //   position: absolute;
-    //   left: 50%;
-    //   margin-left: -55px;
-    //   bottom: 0;
-    //   width: 110px;
-    //   input[type="radio"] {
-    //     display: none;
-    //   }
-    //   label {
-    //     display: inline-block;
-    //     width: 30px;
-    //     height: 6px;
-    //     background-color: $color-pass_button;
-    //     cursor: pointer;
-    //   }
-    //   input[type="radio"]:checked + label {
-    //     background-color: $color-bg_footer;
-    //   }
-    // }
-    //==================================================================
+    // Slider -----------------------------------------
     .slider {
       position: relative;
       overflow: hidden;
@@ -506,31 +507,107 @@ body {
       }
       &__inner {
         overflow: hidden;
+        height: 100%;
+        padding-top: 20px;
       }
       &__wrapper {
         transition: transform 0.6s ease;
-        margin-top:100px;
+        width: 100%;
+        padding: 40px 0;
       }
       &__item {
         position: relative;
-        height: 350px;
-        padding-left: 10px;
-        padding-right: 10px;
-        border: 1px solid;
-        box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
-        &_img {
-          position: absolute;
-          top:-50px;
-          left:10px;
-          width: 100px;
-          height: 100px;
-          img{
-           display: inline-block;
+        @include pad-responsive(300px, 0);
+        @include pad-responsive(350px, 10px);
+        @include pad-responsive(400px, 50px);
+        @include pad-responsive(500px, 90px);
+        @include pad-responsive(576px, 40px);
+        @include pad-responsive(700px, 30px);
+        @include pad-responsive(768px, 10px);
+      }
+    }
+    .slider__content {
+      position: relative;
+      box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
+      margin: auto;
+      // max-width: 267px;
+      height: 100%;
+      padding: 30px 38px 45px;
+      &_autor {
+        text-align: right;
+        @include add-font-properties($font-fam_main, 1.1875rem, $color-bg_footer, $font-bold, 1.5rem);
+      }
+      &_evaluation {
+        display: block;
+        margin-top: 30px;
+        margin-bottom: 6px;
+        span {
+          display: inline-block;
+          width: 23px;
+          height: 23px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      &_text {
+        @include add-font-properties($font-fam_main, 1rem, $color-bg_footer, $font-normal, 1.5rem);
+      }
+      &_img {
+        position: absolute;
+        top: -50px;
+        left: 0;
+        width: 113px;
+        height: 113px;
+
+        img {
+          box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
+          display: inline-block;
           width: 100%;
           height: 100%;
           margin: 0 auto;
           border-radius: 50%;
-          }          
+        }
+      }
+      &_quotes {
+        position: absolute;
+        right: 15px;
+        bottom: 6px;
+        transform: scaleX(-1);
+        transform: rotate(180deg);
+        span {
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          @include add-font-properties($font-fam_main, 3.125rem, $color-text_quote, $font-extra_bold, 1.5rem);
+        }
+      }
+      @include respond(Sm) {
+        & {
+          box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.12);
+          padding: 25px 31px 37px;
+        }
+        &_img {
+          img {
+            box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.12);
+          }
+        }
+        &_autor {
+          font-size: 1rem;
+          line-height: 1.25rem;
+        }
+        &_evaluation {
+          margin-top: 0;
+        }
+        &_text {
+          font-size: 0.8125rem;
+          line-height: 1.25rem;
+          padding-right: 10px;
+        }
+        &_quotes {
+          font-size: 2.5625rem;
+          line-height: 1.25rem;
         }
       }
     }
@@ -549,6 +626,11 @@ body {
         opacity: 0.7;
         color: $color-bg_button;
       }
+      @include respond(Sm) {
+        .fas {
+          font-size: 2rem;
+        }
+      }
     }
     .slider__control_left {
       left: 0;
@@ -557,43 +639,6 @@ body {
     .slider__control_right {
       right: 0;
     }
-
-    // .slider__content_title {
-    //   background: #f5f5f5;
-    //   color: #424242;
-    //   white-space: normal;
-    //   font-weight: 700;
-    //   font-size: 20px;
-    //   line-height: 1.3;
-    //   padding: 10px 15px;
-    //   margin: 0;
-    //   height: 52px;
-    // }
-
-    // .slider__content_footer {
-    //   background: #f5f5f5;
-    //   display: flex;
-    //   padding: 20px 15px;
-    //   color: #616161;
-    // }
-
-    // .slider__content_photo {
-    //   display: block;
-    //   height: auto;
-    //   max-width: 100%;
-    //   border-radius: 50%;
-    // }
-
-    // .slider__content_author {
-    //   margin-left: 8px;
-    //   line-height: 40px;
-    // }
-
-    // .slider__content_views {
-    //   margin-left: 4px;
-    //   line-height: 40px;
-    // }
-
     .slider__indicators {
       position: absolute;
       right: 0;
@@ -688,7 +733,7 @@ body {
         }
       }
     }
-    .slider__indicators{
+    .slider__indicators {
       display: none;
     }
   }
