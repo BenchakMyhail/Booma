@@ -94,6 +94,7 @@ $font-heavy: 900;
   color: inherit;
   background-color: transparent;
   cursor: pointer;
+  outline: none;
 }
 @mixin button-content {
   @include button-reset;
@@ -166,9 +167,7 @@ body {
     height: 118px;
   }
 
-  &__connect {
-  }
-
+ 
   .info {
     display: block;
     text-align: end;
@@ -504,7 +503,6 @@ body {
       position: relative;
       overflow: hidden;
       margin: 0 auto;
-      padding-bottom: 30px;
       
       &__inner {
         overflow: hidden;
@@ -532,7 +530,6 @@ body {
       position: relative;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
       margin: auto;
-      // max-width: 267px;
       height: 100%;
       padding: 30px 38px 45px;
       &_autor {
@@ -620,13 +617,13 @@ body {
       display: flex;
       align-items: center;
       text-align: center;
+      transition: color 0.5s;
       .fas {
         font-size: 3rem;
         pointer-events: none;
       }
-      &:hover {
-        opacity: 0.7;
-        color: $color-bg_button;
+      &:hover, &:active {
+        color: $color-pass_button;
       }
       @include respond(Sm) {
         .fas {
@@ -636,10 +633,12 @@ body {
     }
     .slider__control_left {
       left: 0;
+      margin-top: 1.5rem;
     }
 
     .slider__control_right {
       right: 0;
+      margin-top: 1.5rem;
     }
     @include respond(Sm){
       .slider__control_left {
@@ -670,20 +669,19 @@ body {
         box-sizing: content-box;
         flex: 0 1 auto;
         width: 30px;
-        height: 4px;
+        height: 6px;
         margin-right: 3px;
         margin-left: 3px;
         text-indent: -999px;
         cursor: pointer;
-        background-color: #9e9e9e;
+        background-color: $color-pass_button;
         background-clip: padding-box;
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
-        opacity: 0.5;
         transition: opacity 0.6s ease;
       }
       .active {
-        opacity: 1;
+        background-color: $color-bg_footer;
       }
     }
 
