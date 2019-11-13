@@ -93,6 +93,13 @@ $font-heavy: 900;
     }
   }
 }
+@mixin pad-bottom-responsive($device, $pad) {
+  @if $device {
+    @media (min-width: $device) {
+      padding-bottom: $pad;
+    }
+  }
+}
 //============================================================================
 
 @mixin button-reset {
@@ -164,6 +171,14 @@ body {
   }
   100% {
     transform: rotate(-5deg);
+  }
+}
+@keyframes smooth {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
   }
 }
 //---/ COMMONS ---
@@ -881,8 +896,12 @@ body {
   }
   //=================================================================
   &__about {
+    position: relative;
+    margin-left: 15px;
+    min-height: 155px;
     .btn-toggle-group {
       display: block;
+      height: auto;
       input[type="radio"] {
         display: none;
         &:checked + label {
@@ -903,8 +922,32 @@ body {
         color: #b53eff;
       }
     }
+
+    .off-text {
+      display: none;
+    }
+    .include-text {
+      display: block;
+      animation: smooth 2s ease;
+    }
+    @include respond(Sm) {
+      .include-text {
+        font-size: 12px;
+      }
+      .btn-toggle-group {
+        display: none;
+      }
+    }
+    @include respond(Tablet) {
+      .btn-toggle-group {
+        display: none;
+      }
+      .include-text {
+        font-size: 12px;
+      }
+    }
   }
-  &__advantage {
-  }
+
+
 }
 //+++/ FOOTER +++
