@@ -19,6 +19,7 @@ $color-form_border: #d1dee7;
 $color-text_attention: #ff7474;
 $color-text_main: #ffffff;
 $color-text_hint: #cf67a6;
+$color-text_footer: #cbcbcb;
 $color-bg_footer: #000000;
 $color-line-through: #ff0000;
 $color-text_quote: #9f9f9f;
@@ -34,8 +35,9 @@ $font-extra_bold: 800;
 $font-heavy: 900;
 //===/ fonts ===
 //---/ VARIABLE ---
+
 //--- MIXINS ---
-// for fonts
+//============================================================================
 @mixin add-font-properties($fam: false, $size: false, $colour: false, $weight: false, $lh: false) {
   @if $fam {
     font-family: $fam, "Source Sans Pro", Helvetica, Arial, sans-serif;
@@ -53,8 +55,11 @@ $font-heavy: 900;
     line-height: $lh;
   }
 }
-//---------------
+//============================================================================
+
 // breakpoints
+
+//============================================================================
 @mixin respond($point) {
   @if $point == Sm {
     @media (max-width: 575.98px) {
@@ -78,6 +83,8 @@ $font-heavy: 900;
     }
   }
 }
+//============================================================================
+
 @mixin pad-responsive($device, $pad) {
   @if $device {
     @media (min-width: $device) {
@@ -86,7 +93,8 @@ $font-heavy: 900;
     }
   }
 }
-//---------------
+//============================================================================
+
 @mixin button-reset {
   padding: 0;
   border: none;
@@ -96,6 +104,8 @@ $font-heavy: 900;
   cursor: pointer;
   outline: none;
 }
+//============================================================================
+
 @mixin button-content {
   @include button-reset;
   display: inline-block;
@@ -113,7 +123,21 @@ $font-heavy: 900;
     opacity: 0.5;
   }
 }
+//============================================================================
 
+@mixin img-fluid {
+  img {
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+  }
+}
+//---/ MIXINS ---
+//--- COMMONS ---
+body {
+  position: relative;
+  font-size: 16px;
+}
 .button-item {
   @include button-reset;
   display: inline-block;
@@ -128,19 +152,7 @@ $font-heavy: 900;
     color: $color-text_main;
   }
 }
-@mixin img-fluid {
-  img {
-    display: inline-block;
-    height: auto;
-    max-width: 100%;
-  }
-}
-//---/ MIXINS ---
-//--- COMMONS ---
-body {
-  position: relative;
-  font-size: 16px;
-}
+//============================================================================
 
 @keyframes tremor {
   0%,
@@ -167,7 +179,6 @@ body {
     height: 118px;
   }
 
- 
   .info {
     display: block;
     text-align: end;
@@ -184,7 +195,7 @@ body {
       animation: tremor 5s ease-in-out infinite;
     }
   }
-
+  //==================================================================
   @include respond(Sm) {
     .info {
       display: none;
@@ -196,6 +207,7 @@ body {
       @include img-fluid;
     }
   }
+  //==================================================================
 }
 //+++/ HEADER +++
 //+++ CONTENT +++
@@ -288,7 +300,7 @@ body {
           font-size: 1rem;
         }
       }
-
+      //==================================================================
       @include respond(Sm) {
         &__index,
         .old-price,
@@ -302,6 +314,7 @@ body {
           line-height: 1.5625rem;
         }
       }
+      //==================================================================
     }
 
     .info-sentence {
@@ -318,6 +331,8 @@ body {
     .btn-learn-more {
       @include button-content;
     }
+    //==================================================================
+
     @include respond(Sm) {
       .info-sentence {
         font-size: 0.9375rem;
@@ -328,6 +343,7 @@ body {
         line-height: 2.1875rem;
       }
     }
+    //==================================================================
   }
   // Section of Oder--------------------------------------------
   &__oder {
@@ -339,6 +355,8 @@ body {
       &__subtitle {
         @include add-font-properties($font-fam_form, 1.0625rem, $color-form_text, $font-normal, 1.8125rem);
       }
+      //==================================================================
+
       @include respond(Sm) {
         &__title {
           font-size: 1.375rem;
@@ -349,6 +367,7 @@ body {
           line-height: 1.2rem;
         }
       }
+      //==================================================================
     }
 
     // Form Oder--------------------------------------------
@@ -406,12 +425,15 @@ body {
           font-size: 0.75rem;
         }
         @include add-font-properties($font-fam_form, 0.75rem, $color-form_hint, $font-normal, 1.375rem);
+        //==================================================================
+
         @include respond(Sm) {
           & {
             font-size: 0.6875rem;
             line-height: 1rem;
           }
         }
+        //==================================================================
       }
 
       .red-star {
@@ -443,12 +465,16 @@ body {
       &__subtitle {
         @include add-font-properties($font-fam_form, 0.875rem, $color-form_pay, $font-normal, 1.375rem);
       }
+      //==================================================================
+
       @include respond(Sm) {
         &__subtitle {
           font-size: 0.75rem;
           line-height: 1.0625rem;
         }
       }
+      //==================================================================
+
       .icon-paying {
         display: block;
         height: 31px;
@@ -503,7 +529,7 @@ body {
       position: relative;
       overflow: hidden;
       margin: 0 auto;
-      
+
       &__inner {
         overflow: hidden;
         height: 100%;
@@ -526,6 +552,7 @@ body {
         @include pad-responsive(1200px, 20px);
       }
     }
+    // Slider items----------------------------------------
     .slider__content {
       position: relative;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.12);
@@ -582,6 +609,8 @@ body {
           @include add-font-properties($font-fam_main, 3.125rem, $color-text_quote, $font-extra_bold, 1.5rem);
         }
       }
+      //==================================================================
+
       @include respond(Sm) {
         & {
           box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.12);
@@ -609,7 +638,9 @@ body {
           line-height: 1.25rem;
         }
       }
+      //==================================================================
     }
+    // Slider elements ---------------------------------
     .slider__control {
       position: absolute;
       display: inline-block;
@@ -622,35 +653,43 @@ body {
         font-size: 3rem;
         pointer-events: none;
       }
-      &:hover, &:active {
+      &:hover,
+      &:active {
         color: $color-pass_button;
       }
+      //==================================================================
+
       @include respond(Sm) {
         .fas {
           font-size: 2rem;
         }
       }
+      //==================================================================
     }
     .slider__control_left {
-      left: 0;
+      left: 15px;
       margin-top: 1.5rem;
     }
 
     .slider__control_right {
-      right: 0;
+      right: 15px;
       margin-top: 1.5rem;
     }
-    @include respond(Sm){
+    //==================================================================
+
+    @include respond(Sm) {
       .slider__control_left {
         left: 15px;
         margin-top: 2rem;
       }
-  
+
       .slider__control_right {
-        right:15px;
+        right: 15px;
         margin-top: 2rem;
       }
     }
+    //==================================================================
+
     .slider__indicators {
       position: absolute;
       right: 0;
@@ -748,5 +787,124 @@ body {
       display: none;
     }
   }
+  //==================================================================
 }
 //+++/ CONTENT +++
+//+++ FOOTER +++
+.footer-section {
+  position: relative;
+  background-color: $color-bg_footer;
+  bottom: -118px;
+  @include add-font-properties($font-fam_main, 0.875rem, $color-text_footer, $font-medium, 1.4rem);
+  .attention-text {
+    color: $color-text_attention;
+  }
+
+  &__contacts {
+    &_logo {
+      margin-top: 42px;
+      @include img-fluid;
+    }
+    &_info {
+      margin-top: 42px;
+      p {
+        margin: 0;
+      }
+    }
+    &_social {
+      margin-top: 15px;
+      width: 100%;
+      a {
+        position: relative;
+        font-size: 14px !important;
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        width: 35px;
+        height: 35px;
+        transition: opacity 0.5s;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      .icon-instagram,
+      .icon-facebook,
+      .icon-youtube {
+        display: inline-block;
+        position: relative;
+        width: 35px;
+        height: 35px;
+      }
+      .icon-facebook,
+      .icon-youtube {
+        background-color: $color-text_footer;
+        border-radius: 2px;
+        color: #1d1d1b;
+      }
+      .icon-facebook {
+        font-size: 1.8rem;
+        .fab {
+          position: absolute;
+          left: 30%;
+          bottom: 0;
+        }
+      }
+      .icon-youtube {
+        font-size: 1.5rem;
+
+        .fas {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .icon-instagram {
+        font-size: 2.5rem;
+        .fab {
+          position: absolute;
+          top: -2.5px;
+        }
+      }
+    }
+  }
+  //=================================================================
+  @include respond(Sm) {
+    .footer-section__contacts_info {
+      text-align: center;
+    }
+  }
+  @include respond(Tablet) {
+    .footer-section__contacts_info {
+      text-align: center;
+    }
+  }
+  //=================================================================
+  &__about {
+    .btn-toggle-group {
+      display: block;
+      input[type="radio"] {
+        display: none;
+        &:checked + label {
+          color: white;
+        }
+      }
+      .vert-line {
+        display: inline-block;
+        margin: 10px 10px;
+        width: 1px;
+        height: 6px;
+        background-color: $color-text_main;
+      }
+      label {
+        display: inline-block;
+        font-size: 0.8571rem;
+        cursor: pointer;
+        color: #b53eff;
+      }
+    }
+  }
+  &__advantage {
+  }
+}
+//+++/ FOOTER +++
