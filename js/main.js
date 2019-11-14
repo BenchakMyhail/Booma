@@ -1,12 +1,38 @@
-// ----- Footer-----
-const informSection = document.querySelector('.footer-section__about');
-const switchGroup = informSection.querySelectorAll('.btn-toggle-group  input');
-const wrapperText = informSection.querySelectorAll('.off-text');
+// ---------Smooth transition after click button----------
+const linkNav = document.querySelectorAll('[href^="#"]'), //add all anchor
+    V = 1;  //Speed
+for (let i = 0; i < linkNav.length; i++) {
+    linkNav[i].addEventListener('click', function(e) { 
+        e.preventDefault();
+        const w = window.pageYOffset,
+            hash = this.href.replace(/[^#]*(.*)/, '$1');
+        t = document.querySelector(hash).getBoundingClientRect().top,
+            start = null;
+        requestAnimationFrame(step);
+        function step(time) {
+            if (start === null) start = time;
+            let progress = time - start,
+                r = (t < 0 ? Math.max(w - progress/V, w + t) : Math.min(w + progress/V, w + t));
+            window.scrollTo(0,r);
+            if (r != w + t) {
+                requestAnimationFrame(step);
+            } else {
+                location.hash = hash;
+            }
+        }
+    }, false);
+}
+//------- Pop up ----------------
+
+// ----- Footer navigayion-----
+const informSection = document.querySelector('.footer-section__about'),
+ switchGroup = informSection.querySelectorAll('.btn-toggle-group  input'),
+ wrapperText = informSection.querySelectorAll('.off-text');
 
 function toggleText() {
     if (switchGroup[0].checked == true) {
         wrapperText[0].classList.add('include-text');
-    }
+    }    
     for (let i = 0; i < switchGroup.length; i++) {       
         switchGroup[i].addEventListener('click', function () {
              switchGroup.forEach(function (item){

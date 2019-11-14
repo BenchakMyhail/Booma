@@ -51,7 +51,7 @@
                             <h1 class="title mb-4">Ювелирные изделия</br>
                                 ручной работы
                             </h1>
-                            <button class="btn-look">Смотреть</button>
+                            <a class="btn-look" role="button" href="#showJewel">Смотреть</a>
                         </div>
                         <div class="content-section__watch_decoration col order-1 order-md-2">
                             <img src="./assets/Group 31-2.png" alt="">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </section>
-            <section class="content-section__priсes row">
+            <section class="content-section__priсes row" id="showJewel">
                 <div class="container">
                     <div class=" row">
                         <h2 class="heading col-12">Комплект “Диана”</br> желтое золото, аметисты и бриллианты</h2>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="row">
                         <div class="col mb-4 d-flex justify-content-center">
-                            <button class="btn-learn-more">Узнать больше</button>
+                            <a class="btn-learn-more" role="button" href="#form-oder">Узнать больше</a>
                         </div>
                     </div>
                 </div>
@@ -138,14 +138,14 @@
                 <div class="row justify-content-center">
                     <div class="col col-sm-12 col-lg-7">
                         <section class="row">
-                            <div class="heading col-12">
+                            <div class="heading col-12" id="form-oder">
                                 <div class="heading__title py-3">Оставьте Ваши данные и мы перезвоним с подробностями
                                 </div>
                                 <div class="heading__subtitle pb-3">Оператор свяжется с Вами по указанному телефону в
                                     течении 1 дня.</div>
                             </div>
                         </section>
-                        <form action="#" name="do_order" class="form-order row justify-content-between">
+                        <form action="#" id="do_order" class="form-order row justify-content-between">
                             <label for="clientName" class="col-12 title-field">
                                 Ваше имя<span class="red-star">*</span>
                                 <input type="text" name="Name" id="clientName"
@@ -158,7 +158,7 @@
                                 <input type="checkbox" id="check_conditions"></input><label for="check_conditions"
                                     class="pl-4">
                                     Я согласен на получение маркетинговой информации от BOOMA</label></div>
-                            <div class="col-12"><button type="submit">Заказать</button></div>
+                            <div class="col-12"><button type="submit" class="btn-form" form="do-oder">Заказать</button></div>
                             <div class="col-12 about-protection"><i class="fas fa-lock mr-2"></i>Ваши персональные
                                 данные защищены в соответствии с <span>Политикой Конфиденциальности Данных</span></div>
                             <div class="col-12 about-delivery"><span class="red-star">*</span><span

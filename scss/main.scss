@@ -114,7 +114,9 @@ $font-heavy: 900;
 //============================================================================
 
 @mixin button-content {
-  @include button-reset;
+  text-decoration: none;
+  padding: 10px;
+  text-align: center;
   display: inline-block;
   max-width: 100%;
   width: 322px;
@@ -123,12 +125,11 @@ $font-heavy: 900;
   border-radius: 5px;
   @include add-font-properties($font-fam_main, 1.5rem, $color-text_main, $font-bold, 2.5rem);
   transition: opacity 0.5s;
-  &:hover {
-    border: 2px solid $color-text_main;
+  &:hover,
+  &:active {
+    box-shadow: 0px 0px 0px 2px $color-text_main inset;
   }
-  &:focus {
-    opacity: 0.5;
-  }
+
 }
 //============================================================================
 
@@ -455,7 +456,7 @@ body {
         color: $color-line-through;
       }
 
-      button {
+      .btn-form {
         @include button-reset;
         height: 60px;
         width: 100%;
@@ -464,10 +465,12 @@ body {
         color: $color-text_main;
         text-transform: uppercase;
         @include add-font-properties($font-fam_form, 1.6875rem, $color-text_main, $font-bold, 1.5625rem);
-        transition: color 0.5s;
-        &:hover {
-          color: $color-bg_button;
-          border: 2px solid $color-bg_button;
+        transition: color 0.5s, box-shadow 0.5s;
+        border-radius: 5px;
+        &:hover,
+        &:active {
+          color: $color-form_text;
+          box-shadow: 0 0 0 2px inset;
         }
       }
     }
