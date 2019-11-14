@@ -270,9 +270,9 @@ body {
         font-size: 1.25rem;
         line-height: 1.5rem;
       }
-    } 
+    }
     //Pop Up --------------------------------------------------------
-     .size-ring_pop-up {     
+    .size-ring_pop-up {
       visibility: hidden;
       position: absolute;
       top: 0;
@@ -282,8 +282,8 @@ body {
       z-index: 100;
       padding: 10px 15px;
       height: 100%;
-      
-      .row{
+
+      .row {
         height: 100%;
       }
       &__table {
@@ -320,21 +320,21 @@ body {
           td {
             font-weight: $font-normal;
           }
-          tr{
-            th{
+          tr {
+            th {
               padding: 10px;
             }
           }
-        
+
           tr {
             td:first-child {
               text-align: center;
             }
-            td:last-child{
+            td:last-child {
               text-align: left;
               padding-left: 30px;
               padding-right: 30px;
-              @include respond(Sm){
+              @include respond(Sm) {
                 padding-left: 10px;
                 padding-right: 10px;
               }
@@ -766,9 +766,9 @@ body {
         font-size: 3rem;
         pointer-events: none;
       }
-      &:hover,
+      
       &:active {
-        color: $color-pass_button;
+        animation: smooth 1s linear;
       }
       //==================================================================
 
@@ -920,6 +920,7 @@ body {
     }
     &_info {
       margin-top: 42px;
+      padding-left: 50px;
       p {
         margin: 0;
       }
@@ -985,11 +986,24 @@ body {
   @include respond(Sm) {
     .footer-section__contacts_info {
       text-align: center;
+      padding-left: 0;
     }
   }
   @include respond(Tablet) {
     .footer-section__contacts_info {
       text-align: center;
+      padding-left: 0;
+    }
+  }
+  @include respond(Laptop){
+    .footer-section__contacts_info {
+      padding-left: 50px;
+      padding-right: 0;
+    }
+  }
+  @include respond(Lg){
+    .footer-section__contacts_info {
+      padding-left: 70px;
     }
   }
   //=================================================================
@@ -1044,6 +1058,7 @@ body {
         font-size: 12px;
       }
     }
+    
   }
 }
 //+++/ FOOTER +++
