@@ -1,52 +1,65 @@
 // ---------Smooth transition after click button----------
 const linkNav = document.querySelectorAll('[href^="#"]'), //add all anchor
-    V = 1;  //Speed
+  V = 1;  //Speed
 for (let i = 0; i < linkNav.length; i++) {
-    linkNav[i].addEventListener('click', function(e) { 
-        e.preventDefault();
-        const w = window.pageYOffset,
-            hash = this.href.replace(/[^#]*(.*)/, '$1');
-        t = document.querySelector(hash).getBoundingClientRect().top,
-            start = null;
+  linkNav[i].addEventListener('click', function (e) {
+    e.preventDefault();
+    const w = window.pageYOffset,
+      hash = this.href.replace(/[^#]*(.*)/, '$1');
+    t = document.querySelector(hash).getBoundingClientRect().top,
+      start = null;
+    requestAnimationFrame(step);
+    function step(time) {
+      if (start === null) start = time;
+      let progress = time - start,
+        r = (t < 0 ? Math.max(w - progress / V, w + t) : Math.min(w + progress / V, w + t));
+      window.scrollTo(0, r);
+      if (r != w + t) {
         requestAnimationFrame(step);
-        function step(time) {
-            if (start === null) start = time;
-            let progress = time - start,
-                r = (t < 0 ? Math.max(w - progress/V, w + t) : Math.min(w + progress/V, w + t));
-            window.scrollTo(0,r);
-            if (r != w + t) {
-                requestAnimationFrame(step);
-            } else {
-                location.hash = hash;
-            }
-        }
-    }, false);
+      } else {
+        location.hash = hash;
+      }
+    }
+  }, false);
 }
 //------- Pop up ----------------
+const placePopUp = document.querySelector('.content-section'),
+  btnPopUp = placePopUp.querySelector('#jewel_pop-up'),
+  elementPopUp = placePopUp.querySelector('.size-ring_pop-up'),
+  btnClosePopUp = elementPopUp.querySelector('.button-close');
+  btnPopUp.addEventListener('click', function(){
+elementPopUp.style.visibility='visible';
+elementPopUp.style.animation='smooth 0.7s linear';
+  });
+  btnClosePopUp.addEventListener('click', function(){
+    elementPopUp.style.visibility='hidden';
+    elementPopUp.style.animation='none';
+  });
+  
 
 // ----- Footer navigayion-----
 const informSection = document.querySelector('.footer-section__about'),
- switchGroup = informSection.querySelectorAll('.btn-toggle-group  input'),
- wrapperText = informSection.querySelectorAll('.off-text');
+  switchGroup = informSection.querySelectorAll('.btn-toggle-group  input'),
+  wrapperText = informSection.querySelectorAll('.off-text');
 
 function toggleText() {
-    if (switchGroup[0].checked == true) {
-        wrapperText[0].classList.add('include-text');
-    }    
-    for (let i = 0; i < switchGroup.length; i++) {       
-        switchGroup[i].addEventListener('click', function () {
-             switchGroup.forEach(function (item){
-                item.removeAttribute('checked');  
-              });
-              wrapperText.forEach(function(a){
-                  a.classList.remove('include-text');
-              });
-            switchGroup[i].setAttribute('checked', true);
-            if (switchGroup[i].checked == true) {
-                wrapperText[i].classList.add('include-text');
-            }
-        });
-    }
+  if (switchGroup[0].checked == true) {
+    wrapperText[0].classList.add('include-text');
+  }
+  for (let i = 0; i < switchGroup.length; i++) {
+    switchGroup[i].addEventListener('click', function () {
+      switchGroup.forEach(function (item) {
+        item.removeAttribute('checked');
+      });
+      wrapperText.forEach(function (a) {
+        a.classList.remove('include-text');
+      });
+      switchGroup[i].setAttribute('checked', true);
+      if (switchGroup[i].checked == true) {
+        wrapperText[i].classList.add('include-text');
+      }
+    });
+  }
 }
 toggleText();
 
@@ -71,7 +84,7 @@ var multiItemSlider = (function () {
   }
 
   return function (selector, config) {
-    
+
     var
       _mainElement = document.querySelector(selector),
       _sliderWrapper = _mainElement.querySelector('.slider__wrapper'),

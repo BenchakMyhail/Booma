@@ -61,6 +61,108 @@
             </section>
             <section class="content-section__priсes row" id="showJewel">
                 <div class="container">
+                    <div class="size-ring_pop-up">
+                        <div class="row no-gutters justify-content-center align-items-end  align-items-xl-center">
+                            <div class="size-ring_pop-up__table">
+                                <button class="button-close">
+                                    <div class="cross mx-auto"><img src="./assets/x.png" alt=""></div>
+                                </button>
+                                <table border="1" cols="2">
+                                    <caption>Чтобы определить размер кольца, обвейте палец нитью или лентой, не
+                                        пережимая, в
+                                        один обхват. С помощью линейки измерьте ее длину в миллиметрах и сверьте с
+                                        данной
+                                        таблицей.</caption>
+                                    <tr>
+                                        <th>Длинна отрезка нити в мм</th>
+                                        <th>Размер кольца</th>
+                                    </tr>
+                                    <tr>
+                                        <td>37,7</td>
+                                        <td>- 12 разм. /520/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>40,8</td>
+                                        <td>- 13 разм. /515/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>47</td>
+                                        <td>- 15 разм. /503/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>48,7</td>
+                                        <td>- 15,5 разм. /522/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50,3</td>
+                                        <td>- 16 разм. /504/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>51,8</td>
+                                        <td>- 16,5 разм. /527/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>53,4</td>
+                                        <td>- 17 разм. /505/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>55</td>
+                                        <td>- 17,5 разм. /518/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>58,1</td>
+                                        <td>- 18,5 разм. /516/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>59,7</td>
+                                        <td>- 19 разм. /507/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>61,3</td>
+                                        <td>- 19,5 разм. /523/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>62,8</td>
+                                        <td>- 20 разм. /508/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>66</td>
+                                        <td>- 21 разм. /509/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>69,1</td>
+                                        <td>- 22 разм. /510/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>70,7</td>
+                                        <td>- 22,5 разм. /521/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>72,2</td>
+                                        <td>- 23 разм. /511/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>73,8</td>
+                                        <td>- 23,5 разм. /519/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>75,4</td>
+                                        <td>- 24 разм. /512/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>78,5</td>
+                                        <td>- 25 разм. /513/</td>
+                                    </tr>
+                                    <tr>
+                                        <td>81,6</td>
+                                        <td>- 26 разм. /514/</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div class=" row">
                         <h2 class="heading col-12">Комплект “Диана”</br> желтое золото, аметисты и бриллианты</h2>
                     </div>
@@ -102,7 +204,7 @@
                         </div>
                         <div class="col-12 col-sm-10 col-md-7 col-xl-4 m-auto">
                             <div class="jewel">
-                                <button class="button-item">Размеры кольца</button>
+                                <button class="button-item" id="jewel_pop-up">Размеры кольца</button>
                                 <div class="jewel__index">/503/</div>
                                 <figure class="jewel__img mb-0 mx-0 pb-2 d-flex flex-column justify-content-between">
                                     <img class="m-auto" src="./assets/506+(2) 2-1.png" alt="jewel">
@@ -158,7 +260,8 @@
                                 <input type="checkbox" id="check_conditions"></input><label for="check_conditions"
                                     class="pl-4">
                                     Я согласен на получение маркетинговой информации от BOOMA</label></div>
-                            <div class="col-12"><button type="submit" class="btn-form" form="do-oder">Заказать</button></div>
+                            <div class="col-12"><button type="submit" class="btn-form" form="do-oder">Заказать</button>
+                            </div>
                             <div class="col-12 about-protection"><i class="fas fa-lock mr-2"></i>Ваши персональные
                                 данные защищены в соответствии с <span>Политикой Конфиденциальности Данных</span></div>
                             <div class="col-12 about-delivery"><span class="red-star">*</span><span
@@ -336,7 +439,14 @@
                         </div>
                     </div>
                     <div class="wrapper-text row">
-                        <div class="col-12 off-text">BOOMA – социальный медиа проект для израильских потребителей от компании TELEFAN, Израиль (рег. н. 514585188), созданный с целью рассказать и предложить товары и услуги, связанные с бытом и не только. Контактные данные, оставленные на этой странице, говорят о том, что вы заинтересовались данным товаром и/или услугой. BOOMA гарантирует, что ваши контактные данные не будут переданы третьим лицам и/или использованы в сторонних маркетинговых кaмпаниях, не связанных с BOOMA и контентом, расположенным на наших страницах в социальных сетях. Попав на данную страницу, вы соглашаетесь с <span class="attention-text">Политикой конфиденциальности данных.</span></div>
+                        <div class="col-12 off-text">BOOMA – социальный медиа проект для израильских потребителей от
+                            компании TELEFAN, Израиль (рег. н. 514585188), созданный с целью рассказать и предложить
+                            товары и услуги, связанные с бытом и не только. Контактные данные, оставленные на этой
+                            странице, говорят о том, что вы заинтересовались данным товаром и/или услугой. BOOMA
+                            гарантирует, что ваши контактные данные не будут переданы третьим лицам и/или использованы в
+                            сторонних маркетинговых кaмпаниях, не связанных с BOOMA и контентом, расположенным на наших
+                            страницах в социальных сетях. Попав на данную страницу, вы соглашаетесь с <span
+                                class="attention-text">Политикой конфиденциальности данных.</span></div>
                         <div class="col-12 off-text"><span class="attention-text">Оплата</span> Lorem, ipsum dolor sit
                             amet
                             consectetur adipisicing elit. Nesciunt laborum amet doloremque non velit quae est minima ex
@@ -352,10 +462,14 @@
             </section>
             <section class="footer-section__advantage mt-4 pb-5">
                 <div class="row justify-content-around justify-content-md-start">
-                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img class="mx-auto mx-md-0" src="./assets/Group-car.png" alt=""></div>
-                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img class="mx-auto mx-md-0" src="./assets/Group-quality.png" alt=""></div>
-                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img class="mx-auto mx-md-0" src="./assets/Group-guarantee.png" alt=""></div>
-                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img class="mx-auto mx-md-0" src="./assets/Group-back.png" alt=""></div>
+                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img
+                            class="mx-auto mx-md-0" src="./assets/Group-car.png" alt=""></div>
+                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img
+                            class="mx-auto mx-md-0" src="./assets/Group-quality.png" alt=""></div>
+                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img
+                            class="mx-auto mx-md-0" src="./assets/Group-guarantee.png" alt=""></div>
+                    <div class="advantage-img col-5 col-md-2 mr-md-4 mr-lg-0 py-2 py-md-0 d-flex"><img
+                            class="mx-auto mx-md-0" src="./assets/Group-back.png" alt=""></div>
                 </div>
             </section>
         </div>
